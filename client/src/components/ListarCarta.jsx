@@ -17,6 +17,7 @@ export function Listar_platos() {
 
   return (
     <div className="contenedor-general">
+      <h1>esta es la carta</h1>
       <div className="listar-platos-contenedor">
         {principal.map((plato) => (
           <div className="plato-card" key={plato.id}>

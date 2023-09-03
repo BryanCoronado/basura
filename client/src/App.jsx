@@ -8,7 +8,7 @@ function App (){
     <BrowserRouter>
       <Navegacion/>
       <Routes>
-        <Route path="/" element={<Navigate to="/Principal"/>}/>
+        <Route path="#" element={<Navigate to="/Principal"/>}/>
         <Route path="/principal" element={<Principal/>} />
         <Route path="/carta" element={<Carta/>} />
       </Routes>

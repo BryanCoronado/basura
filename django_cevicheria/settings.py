@@ -1,24 +1,18 @@
 
 from pathlib import Path
-
+import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-import os
-SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 
-DEBUG = 'RENDER' not in os.environ
+SECRET_KEY = 'django-insecure-xw!r5ng&cge8#t4qjz+_2!=#6&di1ou6*^36&$%*k_w2$8^mj0'
 
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
 
-RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
-
-if RENDER_EXTERNAL_HOSTNAME: ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
-
 
 INSTALLED_APPS = [
-    "admin_interface",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -29,18 +23,11 @@ INSTALLED_APPS = [
     'rest_framework',
     'coreapi',
     'principal',
-    "colorfield",
-
 ]
 
-X_FRAME_OPTIONS = "SAMEORIGIN"
-SILENCED_SYSTEM_CHECKS = ["security.W019"]
-
-
 MIDDLEWARE = [
-    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -48,8 +35,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    
-    
 ]
 
 ROOT_URLCONF = 'django_cevicheria.urls'
@@ -72,13 +57,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'django_cevicheria.wsgi.application'
 
-import dj_database_url  # Añade esta línea
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default='sqlite:///db.sqlite3',
-        conn_max_age=600
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
 
@@ -100,9 +84,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 
-LANGUAGE_CODE = 'es'
+LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'America/Lima'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
@@ -111,20 +95,9 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
-if not DEBUG:
-    # Tell Django to copy statics to the `staticfiles` directory
-    # in your application directory on Render.
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-    # Turn on WhiteNoise storage backend that takes care of compressing static files
-    # and creating unique names for each version so they can safely be cached forever.
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
+STATIC_ROOT= os.path.join(BASE_DIR, 'staticfiles')
 
 # settings.py
-import os 
-
-import dj_database_url
 
 
 MEDIA_URL ='/media/'
@@ -143,3 +116,5 @@ CORS_ALLOWED_ORIGINS = ["http://localhost:5173"]
 REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'
 }
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
