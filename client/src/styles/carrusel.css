@@ -1,0 +1,29 @@
+/* estilos-carrusel.css */
+
+.contenedor-carrusel {
+    width: 100%;
+    max-width: 800px; /* Ajusta este valor según tu diseño */
+    margin: 0 auto; /* Centrar el carrusel horizontalmente */
+  }
+  
+  .image-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .image-container {
+    flex: 0 0 30%; /* Ajusta este valor para controlar el ancho de cada imagen */
+    padding: 10px; /* Espaciado entre imágenes */
+    box-sizing: border-box; /* Asegura que el padding no aumente el tamaño total */
+  }
+  
+  .carousel-image {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Asegura que la imagen no tenga espacios adicionales */
+    margin: 0 auto; /* Centrar la imagen horizontalmente */
+  }
+  
+  /* Estilos adicionales que desees aplicar al carrusel y las imágenes */
+  
